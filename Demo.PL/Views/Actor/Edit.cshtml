@@ -1,0 +1,49 @@
+﻿@model EditActorViewModel
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h2>Edit @Model.FirstName @Model.LastName Form</h2>
+    </div>
+    <div class="card-body">
+        <img src="~/Files/ActorImages/@Model.ImageName" width="200" height="200" />
+    </div>
+</div>
+<hr />
+<br />
+<br />
+
+<form method="post" asp-route-id="@Model.ID" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="FirstName"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="LastName"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageName" hidden />
+        <label asp-for="ImageName"></label>
+    </div>
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageFile" />
+        <label asp-for="ImageName">Image Profile</label>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="ImageName"></span>
+    </div>
+    <br />
+
+
+    <button class="btn btn-primary form-control" type="submit">Save</button>
+</form>
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

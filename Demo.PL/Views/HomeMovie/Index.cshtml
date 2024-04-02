@@ -1,0 +1,114 @@
+﻿@model HomeMovieViewModel
+@{
+    ViewData["Title"] = "Movies";
+    Layout = "_HomeMovieDisplay";
+}
+
+
+
+        @foreach (var item in Model.Movies)
+        {
+
+    <div class="movie-card" style="width:250px">
+                <div class="card-head">
+                    <img src="~/Files/MoviePosters/@item.ImageName" alt="" class="card-img">
+
+                    <div class="card-overlay">
+
+                        <div class="bookmark">
+                            <ion-icon name="bookmark-outline"></ion-icon>
+                        </div>
+
+                        <div class="rating">
+                            <ion-icon name="star-outline"></ion-icon>
+                            <span>6.4</span>
+                        </div>
+
+                        <div class="play">
+                            <ion-icon name="play-circle-outline"></ion-icon>
+                        </div>
+
+                    </div>
+                </div>
+                <div class ="card-body">
+                <a asp-action="DisplayVideo" asp-route-id="@item.ID">
+                    <h3 class="card-title">@item.Name</h3>
+                </a>
+
+                    <div class="card-info">
+                        <span class="genre">@item.Genre.Name</span>
+                    </div>
+                </div>
+            @if (User.IsInRole(RoleNames.User.ToString()))
+            {
+
+                if (Model.MoviesIDs.Contains(item.ID))
+                {
+
+                    <form method="post" asp-action="RemoveFavoriteMovie" asp-route-id="@item.ID">
+                        <button class="btn btn-success">
+                            <i class="bi bi-balloon-heart-fill"></i>
+                             UNFavorite
+                        </button>
+                    </form>
+                }
+                else
+                {
+                    <form method="post" asp-action="AddFavoriteMovie" asp-route-id="@item.ID">
+                        <button class="btn btn-primary">
+                            <i class="bi bi-balloon-heart"></i>
+                            Add Favorite
+                        </button>
+                    </form>
+
+                }
+
+            }
+
+            </div>
+        }
+@if (TempData["Successflly"] != null)
+{
+    @section Scripts{
+
+    <script>
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Account Created Successfully",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    }
+}
+@if (TempData["UpdateData"] != null)
+{
+    @section Scripts{
+
+    <script>
+
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Login Successfully",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    }
+}

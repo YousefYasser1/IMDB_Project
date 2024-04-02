@@ -1,0 +1,131 @@
+﻿@model List<ApplicationUser>
+@{
+    Layout = "_AdminDashboard";
+}
+
+
+@if (Model.Any())
+{
+    <div class="products-area-wrapper tableView">
+        <div class="products-header">
+
+            <div class="product-cell image">
+                ID
+            </div>
+            <div class="product-cell category">
+                UserName
+            </div>
+            <div class="product-cell category">
+                Email
+            </div>
+        </div>
+        @foreach (var item in Model)
+        {
+
+            <div class="products-row">
+                <div class="product-cell image">
+                    <span>@item.Id</span>
+                </div>
+                <div class="product-cell image">
+                    <img src="~/Files/AdminsImages/@item.ImageName"/>
+                    <span>@item.UserName</span>
+                </div>
+                <div class="product-cell image">
+                    <span>@item.Email</span>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+else
+{
+    <h3 class="bg bg-warning" style="padding:15px">
+        <i class="bi bi-exclamation-circle-fill"></i>
+        No Genre in DataBase
+    </h3>
+}
+
+
+
+@if (TempData["Successflly"] != null)
+{
+    @section Scripts{
+
+    <script>
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    }
+}
+
+@if (TempData["UpdateData"] != null)
+{
+    @section Scripts{
+
+    <script>
+
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    }
+}
+
+@if (TempData["DeletedData"] != null)
+{
+    @section Scripts{
+    <script>
+
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    }
+}
+
+
+@section ButtonAdd{
+    <a class="app-content-headerButton btn btn-primary" asp-action="AddAdmin">
+        Add Admin
+    </a>
+}
+
+@section Title{
+    <h1 class="app-content-headerText"> Admins </h1>
+}
+

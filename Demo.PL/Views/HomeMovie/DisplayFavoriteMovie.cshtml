@@ -1,0 +1,42 @@
+﻿@model List<Movie>
+
+@if(User.Identity != null)
+{
+    <h1 class="bg bg-dark" style="color:white">Welcom @User.Identity.Name Your Favorite Movies</h1>
+    <hr />
+    <br />
+    <br />
+
+    @if (Model.Any())
+    {
+        <div class="card-group">
+            @foreach (var item in Model)
+            {
+                <div style="display:flex;flex-direction:row">
+                    <div class="card" style="width:300px;">
+                        <a asp-action="DisplayVideo" asp-route-id="@item.ID">
+                            <img src="~/Files/MoviePosters/@item.ImageName" alt="Poster" width="290" height="300">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Name = @item.Name </h5>
+                            <p class="card-title">Genre = @item.Genre.Name</p>
+                            <p class="card-title">Director = @item.Director.FirstName</p>
+
+                            @if (User.IsInRole(RoleNames.User.ToString()))
+                            {
+                                <form method="post" asp-action="RemoveFavoriteMovie" asp-route-id="@item.ID">
+                                    <button class="btn btn-success">Remove Favorite</button>
+                                </form>
+                            }
+
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="bg-warning">No Favorite Movie Yet....</div>
+    }
+}

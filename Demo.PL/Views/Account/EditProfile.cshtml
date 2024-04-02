@@ -1,0 +1,31 @@
+﻿@model EditProfileViewModel 
+
+<h2>Edit Profile</h2>
+<hr />
+<br />
+<br />
+
+
+<form method="post" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label asp-for="UserName"></label>
+        <input class="form-control" asp-for="UserName" placeholder="Enter email">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="UserName"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label>
+        <input class="form-control" asp-for="Address" placeholder="Enter address">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Address"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input class="form-control" asp-for="Age" placeholder="Enter age">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Age"></span>
+    </div>
+
+    <br />
+
+    <button class="btn btn-primary form-control" type="submit">Save</button>
+</form>

@@ -1,0 +1,23 @@
+﻿@model MovieDetailsViewModel
+
+<h2 class="bg bg-secondary" style="color:white">@Model.Movie.Name Film</h2>
+<hr />
+<br />
+
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="~/Files/MoviePosters/@Model.Movie.ImageName" alt="ImageProfile">
+    <div class="card-body">
+        <p class="card-text" style="font-weight:700">Name = @Model.Movie.Name</p>
+        <p class="card-text" style="font-weight:700">Genre = @Model.Movie.Genre.Name</p>
+        <p class="card-text" style="font-weight:700">Director = @Model.Movie.Director.FullName</p>
+        @foreach(var item in Model.movieActors)
+        {
+            <img src="~/Files/ActorImages/@item.Actor.ImageName" class="rounded-circle" width="100" height="100"/>
+            <p>@item.Actor.FullName</p>
+        }
+        <br />
+        <a class="btn btn-primary" asp-action="Index">Back To List</a>
+    </div>
+</div>
+

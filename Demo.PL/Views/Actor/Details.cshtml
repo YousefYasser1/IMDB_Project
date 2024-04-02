@@ -1,0 +1,17 @@
+﻿@model Actor
+
+<h2 class="bg bg-secondary" style="color:white">@Model.FullName Details</h2>
+<hr />
+<br />
+
+
+<div class="card" style="width: 18rem;">
+    <img class="card-img-top" src="~/Files/ActorImages/@Model.ImageName" alt="ImageProfile">
+    <div class="card-body">
+        <p class="card-text" style="font-weight:700">First Name = @Model.FirstName</p>
+        <p class="card-text" style="font-weight:700">Last Name = @Model.LastName</p>
+        <br />
+        <a class="btn btn-primary" asp-action="Index">Back To List</a>
+    </div>
+</div>
+

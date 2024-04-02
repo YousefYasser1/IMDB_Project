@@ -1,0 +1,18 @@
+﻿@model Genre
+
+<h2 class="bg bg-danger" style="color:white">Are You Sure You Want To Delete @Model.Name Genre..?</h2>
+<hr />
+<br />
+<br />
+
+
+<form method="post" asp-action="ConfirmDelete" asp-route-id="@Model.ID">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" disabled>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Name"></span>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-danger form-control">Delete</button>
+</form>

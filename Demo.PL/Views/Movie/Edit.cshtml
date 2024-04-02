@@ -1,0 +1,101 @@
+﻿@model EditMovieViewModel
+
+@{
+    ViewData["Title"] = "Edit Movie";
+    var genreitems = new SelectList(ViewBag.GenreList, "ID", "Name");
+    var directoritems = new SelectList(ViewBag.DirectorList, "ID", "FullName");
+    var actors = ViewBag.AllActors;
+}
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h2>Edit @Model.Name Film Form</h2>
+    </div>
+    <div class="card-body">
+        <img src="~/Files/MoviePosters/@Model.ImageName" width="200" height="200" />
+    </div>
+</div>
+<hr />
+<br />
+<br />
+
+<form method="post" asp-route-id="@Model.Id" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="bg bg-danger" style="color:white"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Name"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="GenreID">Genre</label>
+        <select class="form-control" asp-for="GenreID" asp-items="genreitems">
+            <option value="0">--Select Genre--</option>
+        </select>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="GenreID"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="DirectorID">Director</label>
+        <select class="form-control" asp-for="DirectorID" asp-items="directoritems">
+            <option value="0">--Select Director--</option>
+        </select>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="DirectorID"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageName" hidden />
+        <label asp-for="ImageName"></label>
+    </div>
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageFile" />
+        <label asp-for="ImageName">Image Profile</label>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="ImageFile"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <input class="form-control" asp-for="VideoName" hidden />
+        <label asp-for="VideoName"></label>
+    </div>
+    <div class="form-group">
+        <input class="form-control" asp-for="VideoFile" />
+        <label asp-for="VideoName"></label>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="VideoFile"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label style="font-weight:700 ; font-size:25px">Actors</label>
+        @foreach (var item in ViewBag.MovieActorList)
+        {
+          <img src="~/Files/ActorImages/@item.Actor.ImageName" class="rounded-circle" width="150" height="150" style="margin-left:10px"/>
+          <input hidden name="oldActors" value="@item.Actor.ID"/>
+        }
+    </div>
+    <br />
+    <div class="form-control">
+        <label>New Actors</label>
+        @foreach(var item in actors)
+        {
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" aria-label="Checkbox for following text input" name="newActors" value="@item.ID">
+                    </div>
+                </div>
+                <img src="~/Files/ActorImages/@item.ImageName" class="rounded-circle" width="50" height="50" />
+            </div>
+        }
+    </div>
+    <button class="btn btn-primary form-control" type="submit">Save</button>
+</form>
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

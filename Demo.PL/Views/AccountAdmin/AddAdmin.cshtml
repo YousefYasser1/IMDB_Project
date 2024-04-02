@@ -1,0 +1,44 @@
+﻿@model AdminRegsiterViewModel
+
+
+<h2>Add Admin Form</h2>
+<br />
+<hr />
+
+<form method="post" enctype="multipart/form-data" asp-action="SaveAdmin">
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" placeholder="Enter email">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Email"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input class="form-control" asp-for="Password" placeholder="Enter Password">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Password"></span>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <label asp-for="ConfirmePassword"></label>
+        <input class="form-control" asp-for="ConfirmePassword" placeholder="Enter Confirme Password">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="ConfirmePassword"></span>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageFile">
+        <label asp-for="ImageFile"></label>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="ImageFile"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary form-control">Submit</button>
+</form>
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

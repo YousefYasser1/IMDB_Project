@@ -1,0 +1,47 @@
+﻿@model DirectorViewModel
+
+
+<h2>Add New Director</h2>
+
+<hr />
+<br />
+<br />
+
+
+<form method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName" placeholder="Enter First Name">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="FirstName"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName" placeholder="Enter Last Name">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="LastName"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input class="form-control" asp-for="Age" placeholder="Enter Age">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Age"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageFile" placeholder="Upload Image Profile">
+        <label asp-for="ImageFile"></label>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-primary form-control">Add</button>
+</form>
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

@@ -1,0 +1,43 @@
+﻿@model Director
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h2 class="bg bg-danger" style="color:white">Are You Sure You Want To Delete @Model.FirstName @Model.LastName Director ...?</h2>
+    </div>
+    <div class="card-body">
+       <img src="~/Files/DirectorsImages/@Model.ImageName"  width="200" height="200"/>
+    </div>
+</div>
+<hr />
+<br />
+<br />
+
+
+<form method="post" asp-action="ConfirmDelete" asp-route-id="@Model.ID">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <input class="form-control" asp-for="FirstName" disabled>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="FirstName"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <input class="form-control" asp-for="LastName" disabled>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Age"></label>
+        <input class="form-control" asp-for="Age" disabled>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageName"  hidden>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-danger form-control">Delete</button>
+</form>

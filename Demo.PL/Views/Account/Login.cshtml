@@ -1,0 +1,60 @@
+﻿@model LoginViewModel
+@{
+    Layout = "_Authentication";
+}
+@*
+<h2>Login Form</h2>
+<br />
+<hr />*@
+
+@*
+<form method="post" asp-action="SaveLogin">
+    <div asp-validation-summary="All" class="bg bg-danger" style="width:40%; color:white"></div>
+    <div class="form-group">
+        <label asp-for="Email"></label>
+        <input class="form-control" asp-for="Email" placeholder="Enter email">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Email"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Password"></label>
+        <input class="form-control" asp-for="Password" placeholder="Enter Password">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Password"></span>
+    </div>
+    <div class="wthree-text">
+        <label class="anim">
+            <input asp-for="RememberMe" class="checkbox">
+            <span>RememberMe</span>
+        </label>
+        <div class="clear"> </div>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-primary form-control">Login</button>
+</form>*@
+
+
+<form method="post" asp-action="SaveLogin">
+    
+    <h3>Login Here</h3>
+    <div asp-validation-summary="All" style="color:red"></div>
+    <label asp-for="Email"></label>
+    <input asp-for="Email" placeholder="Enter email" id="username">
+    <span  style="color:red" asp-validation-for="Email"></span>
+
+    <label asp-for="Password"></label>
+    <input asp-for="Password" placeholder="Enter Password">
+    <span  style="color:red" asp-validation-for="Password"></span>
+
+    <button>Log In</button>
+    <div class="hoverlink" style="margin-top:20px;">
+        <a class="form-control btn btn-light" asp-action="Register">Register Now!</a>
+    </div>
+</form>
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}

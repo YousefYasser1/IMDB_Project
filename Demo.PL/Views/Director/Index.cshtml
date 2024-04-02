@@ -1,0 +1,168 @@
+﻿@model List<Director>
+@{
+   Layout = "_AdminDashboard";
+}
+
+
+@if (Model.Any())
+{
+    <div class="products-area-wrapper tableView">
+        <div class="products-header">
+           
+            <div class="product-cell image">
+                ID
+            </div>
+            <div class="product-cell category">
+                FirstName
+            </div>
+            <div class="product-cell category">
+                FirstName
+            </div>
+            <div class="product-cell category">
+                FullName
+            </div>
+            <div class="product-cell category">
+                Age
+            </div>
+            <div class="product-cell category">
+                Edit
+            </div>
+            <div class="product-cell category">
+                Delete
+            </div>
+            <div class="product-cell category">
+                Details
+            </div>
+        </div>
+        @foreach (var item in Model)
+        {
+
+            <div class="products-row">
+                <div class="product-cell image">
+                    <span>@item.ID</span>
+                </div>
+                <div class="product-cell image">
+                    <span>@item.FirstName</span>
+                </div>
+                <div class="product-cell image">
+                    <span>@item.LastName</span>
+                </div>
+                <div class="product-cell image">
+                    <img src="~/Files/DirectorsImages/@item.ImageName" />
+                    <span>@item.FullName</span>
+                </div>
+                <div class="product-cell image">
+                    <span>@item.Age</span>
+                </div>
+                <div class="product-cell">
+                    <a style="color:white; text-decoration:none;padding:15px;width:100px;border-radius:15px;text-align:center;background-color:#03b130c7" asp-action="Edit" asp-route-id="@item.ID">
+                        <i class="bi bi-exclamation-octagon"></i>
+                        Edit
+                    </a>
+                </div>
+                <div class="product-cell image">
+                    <a style="color:white; text-decoration:none;padding:15px;width:100px;border-radius:15px;text-align:center;background-color:#ff007dc2" asp-action="Delete" asp-route-id="@item.ID">
+                        <i class="bi bi-exclamation-octagon"></i>
+                        Delete
+                    </a>
+                </div>
+                <div class="product-cell image">
+                    <a style="color:white; text-decoration:none;padding:15px;width:100px;border-radius:15px;text-align:center;background-color:#5d5d5d" asp-action="Details" asp-route-id="@item.ID">
+                        <i class="bi bi-exclamation-octagon"></i>
+                        Details
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+else
+{
+    <h3 class="bg bg-warning" style="padding:15px">
+        <i class="bi bi-exclamation-circle-fill"></i>
+        No Genre in DataBase
+    </h3>
+}
+
+@if (TempData["Successflly"] != null)
+{
+    @section Scripts{
+
+    <script>
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    }
+}
+
+@if (TempData["UpdateData"] != null)
+{
+    @section Scripts{
+
+    <script>
+
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    }
+}
+
+@if (TempData["DeletedData"] != null)
+{
+    @section Scripts{
+    <script>
+
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+    }
+}
+
+@section ButtonAdd{
+    <a class="app-content-headerButton btn btn-primary" asp-action="Create">
+        Add Director
+    </a>
+}
+
+@section Title{
+    <h1 class="app-content-headerText"> Directors </h1>
+}
+
+

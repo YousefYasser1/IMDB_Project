@@ -1,0 +1,65 @@
+﻿@model RegisterViewModel
+
+<style>
+    body{
+        background-color: #212529
+    }
+</style>
+
+<h2 class="text-light">Register Form</h2>
+<br />
+<hr />
+
+
+
+<form method="post" enctype="multipart/form-data" asp-action="SaveRegister">
+    <div asp-validation-summary="All" style="color:red"></div>
+    <div class="form-group">
+        <label asp-for="Email" class="text-light"></label>
+        <input class="form-control" asp-for="Email" placeholder="Enter email">
+        <span style="color:red" asp-validation-for="Email"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="Password" class="text-light"></label>
+        <input class="form-control" asp-for="Password" placeholder="Enter Password">
+        <span style="color:red" asp-validation-for="Password"></span>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <label asp-for="ConfirmePassword" class="text-light">Confirm Password</label>
+        <input class="form-control" asp-for="ConfirmePassword" placeholder="Enter Confirme Password">
+        <span style="color:red" asp-validation-for="ConfirmePassword"></span>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <label asp-for="Age" class="text-light"></label>
+        <input class="form-control" asp-for="Age" placeholder="Enter Age">
+        <span  style="color:red" asp-validation-for="Age"></span>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <label asp-for="Address" class="text-light"></label>
+        <input class="form-control" asp-for="Address" placeholder="Enter Address">
+        <span style="color:red" asp-validation-for="Address"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageProfile">
+        <label asp-for="ImageProfile" class="text-light">Image Profile</label>
+        <span style="color:red" asp-validation-for="ImageProfile"></span>
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary form-control text-light">Submit</button>
+</form>
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

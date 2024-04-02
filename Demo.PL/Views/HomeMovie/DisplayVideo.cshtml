@@ -1,0 +1,92 @@
+﻿@model DisplayMovieViewModel
+
+<h2 class="bg bg-secondary">@Model.Name</h2>
+
+<hr />
+
+<br />
+<br />
+
+
+<div class="card mb-3">
+    <video controls poster="~/Files/MoviePosters/@Model.ImageName" width="100%" height="400">
+        <source src="~/Files/MovieVideos/@Model.VideoName" type="video/mp4">
+    </video>
+    <div class="card-body">
+        <h5 class="card-title" style="font-weight:700">@Model.Name</h5>
+        <p class="card-title" style="font-weight:700">@Model.Genre.Name</p>
+        <p class="card-title" style="font-weight:700"><img src="~/Files/DirectorsImages/@Model.Director.ImageName" class="rounded-circle" width="40" height="40"/> @Model.Director.FullName</p>
+        <p class="card-title">Likes = @Model.Likes</p>
+    </div>
+</div>
+<br />
+<a class="btn btn-primary" asp-action="Index">
+    Back To Home
+</a>
+<br />
+<br />
+
+@if(User.IsInRole(RoleNames.User.ToString())){
+
+    @if(Model.UserHasLike == true)
+    {
+    <form method="post" asp-action="DisLike" asp-route-id="@Model.ID">
+        <button class="btn btn-success form-control">
+            <i class="bi bi-star-fill"></i>
+            DisLike
+        </button>
+        </form>
+
+    }
+    else
+    {
+        
+    <form method="post" asp-action="AddLike" asp-route-id="@Model.ID">
+        <button class="btn btn-primary form-control">
+                <i class="bi bi-star"></i>
+            Like
+        </button>
+    </form>
+    }
+
+
+    <form method="post" asp-action="AddComment" asp-route-id="@Model.ID">
+        <div class="form-group">
+            <textarea class="form-control" name="Comment" style="margin-top:10px"></textarea>
+        </div>
+        <button class="btn btn-primary form-control" type="submit" style="margin-top:15px">Add Comment</button>
+
+    </form>
+}
+
+<br />
+<br />
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h2 class="bg bg-secondary" style="color:white">--Comments--</h2>
+    </div>
+</div>
+<hr />
+
+
+@if(User.IsInRole(RoleNames.Admin.ToString())){
+    @foreach (var item in Model.Comments)
+    {
+        <p style="font-weight:700;font-size:20px">
+            @item.User.UserName : @item.Comment
+            <form asp-route-id="@item.ID" method="post" asp-action="DeleteComment">
+                <button class="btn btn-danger"  type="submit">DeleteComment</button>
+            </form>
+        </p>
+    }
+
+}
+else{
+    @foreach (var item in Model.Comments)
+    {
+        <p style="font-weight:700;font-size:20px">@item.User.UserName : @item.Comment</p>
+    }
+
+}

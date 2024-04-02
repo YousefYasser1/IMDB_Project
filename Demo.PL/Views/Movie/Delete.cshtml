@@ -1,0 +1,47 @@
+﻿@model Movie
+
+
+<div class="card text-center">
+    <div class="card-header">
+        <h2 class="bg bg-danger" style="color:white">Are You Sure You Want To Delete @Model.Name Film...?</h2>
+    </div>
+    <div class="card-body">
+       <img src="~/Files/MoviePosters/@Model.ImageName"  width="200" height="200"/>
+    </div>
+</div>
+<hr />
+<br />
+<br />
+
+
+<form method="post" asp-action="ConfirmDelete" asp-route-id="@Model.ID">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" disabled>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Name"></span>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="GenreID">Genre</label>
+        <input class="form-control" name="GenreID" value="@Model.Genre.Name" disabled>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <label asp-for="DirectorID">Director</label>
+        <input class="form-control" name="DirectorID" value="@Model.Director.FullName" disabled>
+    </div>
+    <br />
+
+    <div class="form-group">
+        <input class="form-control" asp-for="ImageName"  hidden>
+    </div>
+    <br />
+     <div class="form-group">
+        <input class="form-control" asp-for="VideoName"  hidden>
+    </div>
+    <br />
+
+    <button type="submit" class="btn btn-danger form-control">Delete</button>
+</form>

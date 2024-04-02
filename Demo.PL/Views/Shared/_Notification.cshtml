@@ -1,0 +1,69 @@
+﻿
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+@*<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>*@
+
+<script src="~/sweetalert2/sweetalert2.min.js"></script>
+<script src="sweetalert2.all.min.js"></script>
+
+@if (TempData["Successflly"] != null)
+{
+
+    <script>
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+
+@if (TempData["UpdateData"] != null)
+{
+    <script>
+
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}
+
+@if (TempData["DeletedData"] != null)
+{
+    <script>
+
+        const swal = Swal.mixin({
+            customClass: {
+                confirmButton: "btn btn-success",
+                cancelButton: "btn btn-danger"
+            },
+            buttonsStyling: false
+        });
+        swal.fire({
+            position: "center-center",
+            icon: "success",
+            title: "Your work has been saved",
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
+}

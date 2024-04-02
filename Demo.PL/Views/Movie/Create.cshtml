@@ -1,0 +1,77 @@
+﻿@model MovieViewModel
+
+@{
+    var genreItems = new SelectList(ViewBag.GenreList, "ID", "Name");
+    var directorItems = new SelectList(ViewBag.DirectorList, "ID", "FullName");
+    var actors = ViewBag.ActorList;
+}
+
+
+<h2>Add New Movie</h2>
+
+<hr />
+<br />
+<br />
+
+
+<form method="post" enctype="multipart/form-data">
+    <div asp-validation-summary="All"></div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input class="form-control" asp-for="Name" placeholder="Enter Movie Name">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="Name"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="ImageFile"></label>
+        <input class="form-control" asp-for="ImageFile" placeholder="Enter Poster Of Movie">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="ImageFile"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="VideoFile"></label>
+        <input class="form-control" asp-for="VideoFile" placeholder="Enter Video Of Movie">
+        <span class="bg bg-danger" style="color:white" asp-validation-for="VideoFile"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="GenreID">List Genre</label>
+        <select asp-for="GenreID" asp-items="genreItems" class="form-control">
+            <option value="0">--Select Genre--</option>
+        </select>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="GenreID"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label asp-for="DirectorID">List Directors</label>
+        <select asp-for="DirectorID" asp-items="directorItems" class="form-control">
+            <option value="0">--Select Director--</option>
+        </select>
+        <span class="bg bg-danger" style="color:white" asp-validation-for="GenreID"></span>
+    </div>
+    <br />
+    <div class="form-group">
+        <label style="font-weight:700;font-size:22px">List Actors</label>
+        <hr />
+        @foreach (var item in actors)
+        {
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <div class="input-group-text">
+                        <input type="checkbox" aria-label="Checkbox for following text input" name="actorsIDs" value="@item.ID">
+                    </div>
+                </div>
+                <img src="~/Files/ActorImages/@item.ImageName"  class="rounded-circle" width="50" height="50"/>
+            </div>
+        }
+    </div>
+    <br />
+    <button type="submit" class="btn btn-primary form-control">Add</button>
+</form>
+
+
+@section Scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}
